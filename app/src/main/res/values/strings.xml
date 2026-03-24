@@ -19,4 +19,10 @@
     <string name="hint_mensaje">Escribe aquí tu mensaje</string>
     <string name="btn_enviar">Enviar</string>
 
+    //carrito
+    <string name="ver_carrito">Ver mi Carrito</string>
+    <string name="total_carrito">Total: $0.00</string>
+    <string name="mi_carrito">Mi Carrito</string>
+    <string name="proceder_pago_carrito">Proceder al Pago</string>
+
 </resources>

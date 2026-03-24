@@ -84,7 +84,7 @@
         android:layout_marginHorizontal="50dp"
         android:backgroundTint="@color/naranja_primario"
         android:paddingVertical="15dp"
-        android:text="Ver mi Carrito"
+        android:text="@string/ver_carrito"
         android:textColor="@color/white"
         android:textSize="14sp"
         android:textStyle="bold" />

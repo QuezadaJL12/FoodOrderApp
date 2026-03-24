@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dividir_cuenta"
+        android:textSize="22sp"
+        android:textColor="@color/naranja_primario"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/tvPersonaActual"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/asignar_persona"
+        android:textSize="18sp"
+        android:layout_marginBottom="5dp"/>
+
+    <ListView
+        android:id="@+id/listViewDividir"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:choiceMode="multipleChoice"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginVertical="10dp"/>
+
+    <TextView
+        android:id="@+id/tvSubtotalPersona"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/subtotal_persona"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="end"/>
+
+    <Button
+        android:id="@+id/btnSiguientePersona"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/siguiente_persona"
+        android:backgroundTint="@color/naranja_primario"
+        android:layout_marginTop="10dp"/>
+
+</LinearLayout>

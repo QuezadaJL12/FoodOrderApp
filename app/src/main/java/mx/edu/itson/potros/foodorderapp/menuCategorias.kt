@@ -20,7 +20,7 @@ class menuCategorias : AppCompatActivity() {
         val btnBebidas: Button = findViewById(R.id.button_bebidas)
         val btnVerCarrito: Button = findViewById(R.id.btn_ver_carrito)
 
-        // Función reutilizable (igual que te enseñé antes)
+
         fun goToProductos(menuType: String) {
             val intent = Intent(this, ProductosActivity::class.java)
             intent.putExtra("menuType", menuType)
@@ -32,7 +32,7 @@ class menuCategorias : AppCompatActivity() {
         btnPostres.setOnClickListener { goToProductos("Postres") }
         btnBebidas.setOnClickListener { goToProductos("Bebidas") }
         btnVerCarrito.setOnClickListener {
-            // Validamos si hay algo en el carrito antes de ir (Opcional, pero recomendado)
+            // Validamos si hay algo en el carrito antes de ir
             if (CartManager.selectedProducts.isEmpty()) {
                 Toast.makeText(this, "El carrito está vacío", Toast.LENGTH_SHORT).show()
             } else {

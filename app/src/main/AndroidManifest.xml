@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodOrderApp">
         <activity
+            android:name=".DividirCuentaActivity"
+            android:exported="false" />
+        <activity
             android:name=".Carrito"
             android:exported="false" />
         <activity

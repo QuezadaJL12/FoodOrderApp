@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "¡Bienvenido!", Toast.LENGTH_SHORT).show()
 
 
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, menuCategorias::class.java)
                 startActivity(intent)
                 finish()
 

@@ -47,27 +47,24 @@ class ProductosActivity : AppCompatActivity() {
         when(option){
 
             "Platillos" -> {
-                menu.add(Product("Quesadillas", R.drawable.quesadillas, "Rellenas con su carne favorita...", 6.29, 0))
-                menu.add(Product("Huaraches", R.drawable.huaraches, "Tortilla gruesa con frijoles...", 11.49, 0))
-                menu.add(Product("Gringas", R.drawable.gringas, "Tortilla de harina con queso...", 8.39, 0))
-                menu.add(Product("Mojarra frita", R.drawable.mojarra, "Tilapia frita...", 17.99, 0))
-                menu.add(Product("Ceviche", R.drawable.ceviche, "Tilapia, camarones...", 6.99, 0))
-                menu.add(Product("Burrito Pepe", R.drawable.burritopepe, "Flour tortilla...", 10.99, 0))
-                menu.add(Product("Torta cubana", R.drawable.tortacubana, "Chorizo, asada...", 14.49, 0))
-                menu.add(Product("Caldo de res", R.drawable.caldores, "Beef ribs stew...", 8.39, 0))
-                menu.add(Product("Pozole", R.drawable.pozole, "Pork ribs stew...", 7.99, 0))
+                menu.add(Product("Quesadillas", R.drawable.quesadilla, "Tortilla con queso adentro (Escoja si quiere tortilla de maíz o harina)", 20.99, 8))
+                menu.add(Product("Huaraches", R.drawable.huarache, "Tortilla gruesa con frijoles", 60.99, 10))
+                menu.add(Product("Hamburguesa", R.drawable.hamburguesa, "Hay opción de carne de res, pollo o incluso vegana", 150.99, 12))
+                menu.add(Product("Sushi", R.drawable.sushi, "Platillo japonés tradicional.", 119.99, 11))
+                menu.add(Product("Ceviche", R.drawable.ceviche, "Pida a su gusto, con tilapia, camarón o pescado", 57.99, 14))
+                menu.add(Product("Burrito frijol y queso", R.drawable.burrito, "Burrito con frijol y queso", 20.99, 7))
+                menu.add(Product("Torta cubana", R.drawable.tortacubana, "Pidalo con chorizo, asada o cabeza", 72.99, 9))
             }
 
             "Postres" -> {
-                menu.add(Product("Flan", R.drawable.flan, "Postre tradicional de caramelo.", 3.99, 0))
-                menu.add(Product("Pastel de chocolate", R.drawable.pastel, "Rebanada de pastel de chocolate.", 4.99, 0))
-                menu.add(Product("Churros", R.drawable.churros, "Churros con azúcar y canela.", 3.49, 0))
+                menu.add(Product("Flan", R.drawable.flan, "Postre tradicional de caramelo.", 25.99, 19))
+                menu.add(Product("Pastel de chocolate", R.drawable.pastel, "Pastel de chocolate pequeño", 56.99, 15))
             }
 
             "Bebidas" -> {
-                menu.add(Product("Sodas", R.drawable.sodas, "Sodas 20 oz.", 2.99, 0))
-                menu.add(Product("Jarritos", R.drawable.jarritos, "Refresco mexicano.", 2.75, 0))
-                menu.add(Product("Agua fresca", R.drawable.aguafresca, "Bebida natural de frutas.", 2.50, 0))
+                menu.add(Product("Coca-Cola", R.drawable.coca, "20 oz.", 14.99, 15))
+                menu.add(Product("Pepsi", R.drawable.pepsi, "20 oz.", 13.95, 14))
+                menu.add(Product("Agua fresca", R.drawable.aguafresca, "Bebida natural de frutas.", 20.99, 50))
             }
         }
     }

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodOrderApp">
         <activity
+            android:name=".ProductosActivity"
+            android:exported="false" />
+        <activity
             android:name=".menuCategorias"
             android:exported="false" />
         <activity

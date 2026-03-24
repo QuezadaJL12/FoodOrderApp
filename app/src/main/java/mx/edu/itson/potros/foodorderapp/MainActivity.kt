@@ -1,5 +1,6 @@
 package mx.edu.itson.potros.foodorderapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
@@ -10,20 +11,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-   
         val btnIniciar = findViewById<Button>(R.id.btnIniciarSesion)
         val btnRegistro = findViewById<Button>(R.id.btnRegistrar)
 
-        // Acción al presionar Iniciar Sesión
-        btnIniciar.setOnClickListener {
-            Toast.makeText(this, "Redirigiendo al Menú...", Toast.LENGTH_SHORT).show()
 
+        btnIniciar.setOnClickListener {
+            Toast.makeText(this, "Abriendo Inicio de Sesión...", Toast.LENGTH_SHORT).show()
+
+
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
 
-        // Acción al presionar Registrar
+
         btnRegistro.setOnClickListener {
             Toast.makeText(this, "Abriendo pantalla de Registro...", Toast.LENGTH_SHORT).show()
 
+
+            val intent = Intent(this, RegistroActivity::class.java)
+            startActivity(intent)
         }
     }
 }

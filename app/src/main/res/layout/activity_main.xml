@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="30dp"
+    android:background="@color/white"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/foodorderapp"
+        android:contentDescription="Logo de la App"/>
+
+    <TextView
+        android:id="@+id/tvSlogan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/slogan"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        android:textColor="@color/gris_texto"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"/>
+
+    <Button
+        android:id="@+id/btnIniciarSesion"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="@string/btn_login"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/naranja_primario"
+        android:textSize="16sp"
+        android:layout_marginBottom="15dp"
+        app:cornerRadius="10dp"/>
+
+    <Button
+        android:id="@+id/btnRegistrar"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="@string/btn_register"
+        android:textColor="@color/naranja_primario"
+        app:strokeColor="@color/naranja_primario"
+        android:textSize="16sp"
+        app:cornerRadius="10dp"/>
+
+</LinearLayout>

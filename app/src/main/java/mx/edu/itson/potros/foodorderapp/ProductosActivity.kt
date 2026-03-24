@@ -69,7 +69,7 @@ class ProductosActivity : AppCompatActivity() {
         }
     }
 
-    private class AdaptadorProductos(contexto: Context, producto: ArrayList<Product>) : BaseAdapter() {
+    public class AdaptadorProductos(contexto: Context, producto: ArrayList<Product>) : BaseAdapter() {
 
         var producto: ArrayList<Product> = producto
         var contexto: Context = contexto
@@ -95,6 +95,10 @@ class ProductosActivity : AppCompatActivity() {
             desc.text = prod.descripcion
             precio.text = "$${prod.price} | Cant: ${prod.cantidad}"
 
+            vista.setOnClickListener {
+                CartManager.addProduct(prod)
+                Toast.makeText(contexto, "${prod.name} añadido al carrito", Toast.LENGTH_SHORT).show()
+            }
             return vista
         }
     }

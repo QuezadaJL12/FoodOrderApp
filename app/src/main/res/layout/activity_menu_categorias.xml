@@ -38,11 +38,12 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
             android:layout_marginRight="2dp"
-            android:background="@color/naranja_primario"
+            android:backgroundTint="@color/naranja_primario"
             android:paddingHorizontal="20dp"
             android:paddingVertical="20dp"
             android:text="@string/platillos"
             android:textAllCaps="true"
+            android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="10dp" />
 
@@ -51,11 +52,12 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
             android:layout_marginRight="2dp"
-            android:background="@color/naranja_primario"
+            android:backgroundTint="@color/naranja_primario"
             android:paddingHorizontal="20dp"
             android:paddingVertical="20dp"
             android:text="@string/postres"
             android:textAllCaps="true"
+            android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="10dp" />
 
@@ -64,11 +66,12 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
             android:layout_marginRight="2dp"
-            android:background="@color/naranja_primario"
+            android:backgroundTint="@color/naranja_primario"
             android:paddingHorizontal="20dp"
             android:paddingVertical="20dp"
             android:text="@string/bebidas"
             android:textAllCaps="true"
+            android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="10dp" />
     </GridLayout>

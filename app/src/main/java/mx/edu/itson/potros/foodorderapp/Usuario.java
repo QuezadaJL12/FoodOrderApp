@@ -9,15 +9,20 @@ public class Usuario implements Parcelable {
 
     private int id;
     private String nombre;
+    private String fechaNacimiento;
+    private String correo;
+    private String telefono;
     private String contra;
 
     public Usuario() {
-
     }
 
-    public Usuario(int id, String nombre, String contra){
+    public Usuario(int id, String nombre, String fechaNacimiento, String correo, String telefono, String contra){
         this.id = id;
         this.nombre = nombre;
+        this.fechaNacimiento = fechaNacimiento;
+        this.correo = correo;
+        this.telefono = telefono;
         this.contra = contra;
     }
 
@@ -37,7 +42,31 @@ public class Usuario implements Parcelable {
         this.nombre = nombre;
     }
 
-    public String getContra(){
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getContra() {
         return contra;
     }
 
@@ -56,19 +85,25 @@ public class Usuario implements Parcelable {
     }
 
     @Override
-    public void writeToParcel(@NonNull Parcel parcel, int i) {
+    public void writeToParcel(@NonNull Parcel parcel, int flags) {
         parcel.writeInt(id);
         parcel.writeString(nombre);
+        parcel.writeString(fechaNacimiento);
+        parcel.writeString(correo);
+        parcel.writeString(telefono);
         parcel.writeString(contra);
     }
 
     protected Usuario(Parcel in) {
         id = in.readInt();
         nombre = in.readString();
+        fechaNacimiento = in.readString();
+        correo = in.readString();
+        telefono = in.readString();
         contra = in.readString();
     }
 
-    public static final Parcelable.Creator<Usuario> CREATOR = new Parcelable.Creator<Usuario>() {
+    public static final Creator<Usuario> CREATOR = new Creator<Usuario>() {
         @Override
         public Usuario createFromParcel(Parcel in) {
             return new Usuario(in);

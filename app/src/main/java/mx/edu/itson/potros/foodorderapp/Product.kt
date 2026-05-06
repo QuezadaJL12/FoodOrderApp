@@ -1,7 +1,48 @@
 package mx.edu.itson.potros.foodorderapp
 
-data class Product(var name: String,
-                   var image: Int,
-                   var descripcion: String,
-                   var price: Double,
-                   var cantidad: Int)
+import android.os.Parcel
+import android.os.Parcelable
+
+class Product : Parcelable {
+    var name: String? = null
+    var image: Int = 0
+    var descripcion: String? = null
+    var price: Double = 0.0
+    var cantidad: Int = 0
+
+    constructor()
+
+    constructor(name: String, image: Int, descripcion: String, price: Double, cantidad: Int) {
+        this.name = name
+        this.image = image
+        this.descripcion = descripcion
+        this.price = price
+        this.cantidad = cantidad
+    }
+
+    protected constructor(`in`: Parcel) {
+        name = `in`.readString()
+        image = `in`.readInt()
+        descripcion = `in`.readString()
+        price = `in`.readDouble()
+        cantidad = `in`.readInt()
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(name)
+        parcel.writeInt(image)
+        parcel.writeString(descripcion)
+        parcel.writeDouble(price)
+        parcel.writeInt(cantidad)
+    }
+
+    override fun describeContents(): Int = 0
+
+    companion object {
+        @JvmField
+        val CREATOR: Parcelable.Creator<Product?> = object : Parcelable.Creator<Product?> {
+            override fun createFromParcel(`in`: Parcel): Product? = Product(`in`)
+            override fun newArray(size: Int): Array<Product?> = arrayOfNulls(size)
+        }
+    }
+}

@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "517019311624",
-    "project_id": "foodorderapp-6fa9a",
-    "storage_bucket": "foodorderapp-6fa9a.firebasestorage.app"
+    "project_number": "690475852232",
+    "project_id": "foodorderapp-4290e",
+    "storage_bucket": "foodorderapp-4290e.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:517019311624:android:ffa8baaeaca1e12a6b3bbd",
+        "mobilesdk_app_id": "1:690475852232:android:88239c88e1ea9e942220fd",
         "android_client_info": {
           "package_name": "mx.edu.itson.potros.foodorderapp"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCcP7Fk3QyECnEJ42fH5fmTDKUvEz7VztM"
+          "current_key": "AIzaSyBN6sT7Cr0TlxXV7KTo9hCm40DjwzOfK-c"
         }
       ],
       "services": {

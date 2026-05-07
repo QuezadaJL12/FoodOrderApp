@@ -4,52 +4,107 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:layout_marginLeft="15dp"
-    android:layout_marginRight="15dp">
+    android:padding="10dp"
+    android:gravity="center_vertical">
 
     <ImageView
         android:id="@+id/producto_img"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:src="@drawable/quesadilla"
-        android:layout_marginLeft="5dp" />
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/quesadilla" />
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight="3"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="8dp">
 
         <TextView
             android:id="@+id/producto_nombre"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/naranja_primario"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:text="Quesadillas"
-            android:textSize="25sp"/>
+            android:textStyle="bold"
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/producto_desc"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/gris_texto"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:text="Descripción del producto"
-            android:textSize="15sp"/>
+            android:text="Descripción corta..."
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textSize="13sp"/>
 
+        <TextView
+            android:id="@+id/producto_precio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="$0.00"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginTop="4dp"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/producto_precio"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textColor="@color/naranja_primario"
-        android:text="$5.00"
-        android:textSize="15sp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="8dp">
+
+            <Button
+                android:id="@+id/btn_menos"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:text="-"
+                android:backgroundTint="@color/naranja_primario"
+                android:padding="0dp"
+                android:textColor="@color/white"
+                style="@style/Widget.AppCompat.Button.Small"/>
+
+            <TextView
+                android:id="@+id/tv_cantidad_orden"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <Button
+                android:id="@+id/btn_mas"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:text="+"
+                android:backgroundTint="@color/naranja_primario"
+                android:padding="0dp"
+                android:textColor="@color/white"
+                style="@style/Widget.AppCompat.Button.Small"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_agregar_carrito"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="Agregar"
+            android:textSize="10sp"
+            android:backgroundTint="@color/naranja_primario"
+            android:textColor="@color/white"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
+
+    </LinearLayout>
 </LinearLayout>

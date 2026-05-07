@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
@@ -36,13 +37,19 @@ class DividirCuentaActivity : AppCompatActivity() {
 
         listView.choiceMode = ListView.CHOICE_MODE_MULTIPLE
 
-        listView.setOnItemClickListener { _, view, position, _ ->
-            // Cambiamos el color de fondo visualmente para saber qué está seleccionado
-            if (listView.isItemChecked(position)) {
-                view.setBackgroundColor(getColor(R.color.naranja_primario))
-            } else {
-                view.setBackgroundColor(android.graphics.Color.TRANSPARENT)
+        listView.setOnItemClickListener { _, _, position, _ ->
+            // Forzamos al adaptador a redibujarse para que el CheckBox se marque
+            adaptador.notifyDataSetChanged()
+
+            // Calcular subtotal de lo seleccionado actualmente
+            val seleccionados = listView.checkedItemPositions
+            var subtotalEstaPersona = 0.0
+            for (i in 0 until productosRestantes.size) {
+                if (seleccionados.get(i)) {
+                    subtotalEstaPersona += productosRestantes[i].price
+                }
             }
+            tvSubtotal.text = "Subtotal Persona: $${String.format("%.2f", subtotalEstaPersona)}"
         }
 
         btnSiguiente.setOnClickListener {
@@ -87,34 +94,33 @@ class DividirCuentaActivity : AppCompatActivity() {
             } else {
                 personaActual++
                 tvPersona.text = "Asignando a: Persona $personaActual"
+                tvSubtotal.text = "Subtotal Persona: $0.00" // Resetear texto
             }
         }
     }
-    public class AdaptadorDividir(contexto: Context, producto: java.util.ArrayList<Product>) : BaseAdapter() {
+    class AdaptadorDividir(val contexto: Context, val productos: ArrayList<Product>) : BaseAdapter() {
 
-        var producto: java.util.ArrayList<Product> = producto
-        var contexto: Context = contexto
-
-        override fun getCount(): Int = producto.size
-
-        override fun getItem(position: Int): Any = producto[position]
-
+        override fun getCount(): Int = productos.size
+        override fun getItem(position: Int): Any = productos[position]
         override fun getItemId(position: Int): Long = position.toLong()
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+            val vista = LayoutInflater.from(contexto).inflate(R.layout.item_dividir, parent, false)
+            val prod = productos[position]
 
-            val prod = producto[position]
-            val vista = LayoutInflater.from(contexto).inflate(R.layout.producto_view, null)
-
-            val imagen = vista.findViewById<ImageView>(R.id.producto_img)
-            val nombre = vista.findViewById<TextView>(R.id.producto_nombre)
-            val desc = vista.findViewById<TextView>(R.id.producto_desc)
-            val precio = vista.findViewById<TextView>(R.id.producto_precio)
+            val imagen = vista.findViewById<ImageView>(R.id.img_dividir)
+            val nombre = vista.findViewById<TextView>(R.id.nombre_dividir)
+            val precio = vista.findViewById<TextView>(R.id.precio_dividir)
+            val check = vista.findViewById<CheckBox>(R.id.check_dividir)
 
             imagen.setImageResource(prod.image)
             nombre.text = prod.name
-            desc.text = prod.descripcion
-            precio.text = "$${prod.price} | Cant: ${prod.cantidad}"
+            precio.text = "$${prod.price}"
+
+            // Sincronizar el checkbox con el estado del ListView
+            val listView = parent as ListView
+            check.isChecked = listView.isItemChecked(position)
+
             return vista
         }
     }

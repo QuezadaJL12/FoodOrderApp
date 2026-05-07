@@ -1,20 +1,20 @@
-package mx.edu.itson.potros.foodorderapp;
+package mx.edu.itson.potros.foodorderapp
 
-import android.content.Context;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.content.Context
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import java.util.ArrayList;
+import java.util.ArrayList
 
 class ProductosActivity : AppCompatActivity() {
 
-    var menu:ArrayList<Product> = ArrayList()
+    var menu: ArrayList<Product> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +26,7 @@ class ProductosActivity : AppCompatActivity() {
 
         val imagen: ImageView = findViewById(R.id.imageView)
 
-        when(menuOption){
+        when (menuOption) {
             "Platillos" -> imagen.setImageResource(R.drawable.platillos)
             "Postres" -> imagen.setImageResource(R.drawable.postres)
             "Bebidas" -> imagen.setImageResource(R.drawable.bebidas)
@@ -43,9 +43,8 @@ class ProductosActivity : AppCompatActivity() {
         }
     }
 
-    fun agregarProductos(option: String?){
-        when(option){
-
+    fun agregarProductos(option: String?) {
+        when (option) {
             "Platillos" -> {
                 menu.add(Product("Quesadillas", R.drawable.quesadilla, "Tortilla con queso adentro (Escoja si quiere tortilla de maíz o harina)", 20.99, 8))
                 menu.add(Product("Huaraches", R.drawable.huarache, "Tortilla gruesa con frijoles", 60.99, 10))
@@ -55,12 +54,10 @@ class ProductosActivity : AppCompatActivity() {
                 menu.add(Product("Burrito frijol y queso", R.drawable.burrito, "Burrito con frijol y queso", 20.99, 7))
                 menu.add(Product("Torta cubana", R.drawable.tortacubana, "Pidalo con chorizo, asada o cabeza", 72.99, 9))
             }
-
             "Postres" -> {
                 menu.add(Product("Flan", R.drawable.flan, "Postre tradicional de caramelo.", 25.99, 19))
                 menu.add(Product("Pastel de chocolate", R.drawable.pastel, "Pastel de chocolate pequeño", 56.99, 15))
             }
-
             "Bebidas" -> {
                 menu.add(Product("Coca-Cola", R.drawable.coca, "20 oz.", 14.99, 15))
                 menu.add(Product("Pepsi", R.drawable.pepsi, "20 oz.", 13.95, 14))
@@ -69,36 +66,64 @@ class ProductosActivity : AppCompatActivity() {
         }
     }
 
-    public class AdaptadorProductos(contexto: Context, producto: ArrayList<Product>) : BaseAdapter() {
-
-        var producto: ArrayList<Product> = producto
-        var contexto: Context = contexto
+    public class AdaptadorProductos(val contexto: Context, val producto: ArrayList<Product>) : BaseAdapter() {
 
         override fun getCount(): Int = producto.size
-
         override fun getItem(position: Int): Any = producto[position]
-
         override fun getItemId(position: Int): Long = position.toLong()
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-
             val prod = producto[position]
             val vista = LayoutInflater.from(contexto).inflate(R.layout.producto_view, null)
 
-            val imagen = vista.findViewById<ImageView>(R.id.producto_img)
+            // 1. Referencias de la información (¡ESTO FALTABA!)
+            val img = vista.findViewById<ImageView>(R.id.producto_img)
             val nombre = vista.findViewById<TextView>(R.id.producto_nombre)
-            val desc = vista.findViewById<TextView>(R.id.producto_desc)
+            val descripcion = vista.findViewById<TextView>(R.id.producto_desc)
             val precio = vista.findViewById<TextView>(R.id.producto_precio)
 
-            imagen.setImageResource(prod.image)
-            nombre.text = prod.name
-            desc.text = prod.descripcion
-            precio.text = "$${prod.price} | Cant: ${prod.cantidad}"
+            // 2. Referencias de los controles
+            val btnMas = vista.findViewById<Button>(R.id.btn_mas)
+            val btnMenos = vista.findViewById<Button>(R.id.btn_menos)
+            val btnConfirmarAgregar = vista.findViewById<Button>(R.id.btn_agregar_carrito)
+            val tvCantidad = vista.findViewById<TextView>(R.id.tv_cantidad_orden)
 
-            vista.setOnClickListener {
-                CartManager.addProduct(prod)
-                Toast.makeText(contexto, "${prod.name} añadido al carrito", Toast.LENGTH_SHORT).show()
+            // 3. Asignar datos del producto
+            img.setImageResource(prod.image)
+            nombre.text = prod.name
+            descripcion.text = prod.descripcion
+            precio.text = "$${prod.price}"
+
+            // 4. Lógica de cantidad
+            var cantidadLocal = 0
+            tvCantidad.text = "0"
+
+            btnMas.setOnClickListener {
+                cantidadLocal++
+                tvCantidad.text = cantidadLocal.toString()
             }
+
+            btnMenos.setOnClickListener {
+                if (cantidadLocal > 0) {
+                    cantidadLocal--
+                    tvCantidad.text = cantidadLocal.toString()
+                }
+            }
+
+            btnConfirmarAgregar.setOnClickListener {
+                if (cantidadLocal > 0) {
+                    repeat(cantidadLocal) {
+                        CartManager.addProduct(prod)
+                    }
+                    Toast.makeText(contexto, "$cantidadLocal ${prod.name} agregado(s)", Toast.LENGTH_SHORT).show()
+
+                    cantidadLocal = 0
+                    tvCantidad.text = "0"
+                } else {
+                    Toast.makeText(contexto, "Selecciona al menos 1 producto", Toast.LENGTH_SHORT).show()
+                }
+            }
+
             return vista
         }
     }

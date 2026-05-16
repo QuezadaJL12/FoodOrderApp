@@ -6,8 +6,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.* // Importa todos los widgets necesarios
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.FirebaseDatabase
 
 class Carrito : AppCompatActivity() {
 
@@ -15,6 +16,8 @@ class Carrito : AppCompatActivity() {
     private lateinit var tvTotal: TextView
     private lateinit var tvSubtotal: TextView
     private lateinit var tvIVA: TextView
+
+    private val database = FirebaseDatabase.getInstance().reference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,9 +40,44 @@ class Carrito : AppCompatActivity() {
         actualizarTotal()
 
         btnPagar.setOnClickListener {
+
             if (CartManager.selectedProducts.isNotEmpty()) {
-                val intent = Intent(this, DividirCuentaActivity::class.java)
-                startActivity(intent)
+
+                val total = CartManager.getTotal()
+                val subtotal = total / 1.16
+                val iva = total - subtotal
+
+                // Convertimos productos a formato Firebase (HashMap)
+                val productosFirebase = CartManager.selectedProducts.map { prod ->
+                    hashMapOf(
+                        "name" to prod.name,
+                        "price" to prod.price,
+                        "descripcion" to prod.descripcion,
+                        "cantidad" to prod.cantidad,
+                        "image" to prod.image
+                    )
+                }
+
+                // 🔥 Objeto que se guarda en Firebase
+                val carrito = hashMapOf(
+                    "subtotal" to subtotal,
+                    "iva" to iva,
+                    "total" to total,
+                    "productos" to productosFirebase
+                )
+
+                val ref = database.child("carritos").push()
+                ref.setValue(carrito)
+
+                Toast.makeText(this, "Carrito guardado en Firebase", Toast.LENGTH_SHORT).show()
+
+                // Opcional: limpiar carrito después de pagar
+                CartManager.selectedProducts.clear()
+                adaptador.notifyDataSetChanged()
+                actualizarTotal()
+
+                startActivity(Intent(this, DividirCuentaActivity::class.java))
+
             } else {
                 Toast.makeText(this, "El carrito está vacío", Toast.LENGTH_SHORT).show()
             }
@@ -58,7 +96,7 @@ class Carrito : AppCompatActivity() {
         tvTotal.text = "$${String.format("%.2f", total)}"
     }
 
-    // Clase del adaptador optimizada
+    // Adaptador del carrito
     class AdaptadorCarrito(
         val contexto: Context,
         val productos: ArrayList<Product>,

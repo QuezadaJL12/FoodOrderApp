@@ -39,7 +39,19 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     } else {
-                        Toast.makeText(this, "Error: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                        try {
+                            throw task.exception!!
+                        } catch (e: com.google.firebase.auth.FirebaseAuthInvalidUserException) {
+                            // Usuario no existe o fue deshabilitado
+                            Toast.makeText(this, "El usuario no existe", Toast.LENGTH_LONG).show()
+
+                        } catch (e: com.google.firebase.auth.FirebaseAuthInvalidCredentialsException) {
+                            // Contraseña incorrecta
+                            Toast.makeText(this, "Correo o contraseña incorrectos", Toast.LENGTH_LONG).show()
+
+                        } catch (e: Exception) {
+                            Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+                        }
                     }
                 }
         }

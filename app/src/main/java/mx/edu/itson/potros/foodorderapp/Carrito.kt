@@ -36,7 +36,6 @@ class Carrito : AppCompatActivity() {
         }
 
         listView.adapter = adaptador
-
         actualizarTotal()
 
         btnPagar.setOnClickListener {
@@ -47,7 +46,6 @@ class Carrito : AppCompatActivity() {
                 val subtotal = total / 1.16
                 val iva = total - subtotal
 
-                // Convertimos productos a formato Firebase (HashMap)
                 val productosFirebase = CartManager.selectedProducts.map { prod ->
                     hashMapOf(
                         "name" to prod.name,
@@ -58,7 +56,6 @@ class Carrito : AppCompatActivity() {
                     )
                 }
 
-                // 🔥 Objeto que se guarda en Firebase
                 val carrito = hashMapOf(
                     "subtotal" to subtotal,
                     "iva" to iva,
@@ -66,15 +63,9 @@ class Carrito : AppCompatActivity() {
                     "productos" to productosFirebase
                 )
 
-                val ref = database.child("carritos").push()
-                ref.setValue(carrito)
+                database.child("carritos").push().setValue(carrito)
 
                 Toast.makeText(this, "Carrito guardado en Firebase", Toast.LENGTH_SHORT).show()
-
-                // Opcional: limpiar carrito después de pagar
-                CartManager.selectedProducts.clear()
-                adaptador.notifyDataSetChanged()
-                actualizarTotal()
 
                 startActivity(Intent(this, DividirCuentaActivity::class.java))
 
@@ -84,7 +75,6 @@ class Carrito : AppCompatActivity() {
         }
     }
 
-    // Función para calcular subtotal, IVA y total
     private fun actualizarTotal() {
 
         val total = CartManager.getTotal()
@@ -96,16 +86,15 @@ class Carrito : AppCompatActivity() {
         tvTotal.text = "$${String.format("%.2f", total)}"
     }
 
-    // Adaptador del carrito
     class AdaptadorCarrito(
         val contexto: Context,
         val productos: ArrayList<Product>,
         val updateCallback: () -> Unit
     ) : BaseAdapter() {
 
-        override fun getCount(): Int = productos.size
-        override fun getItem(position: Int): Any = productos[position]
-        override fun getItemId(position: Int): Long = position.toLong()
+        override fun getCount() = productos.size
+        override fun getItem(position: Int) = productos[position]
+        override fun getItemId(position: Int) = position.toLong()
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 

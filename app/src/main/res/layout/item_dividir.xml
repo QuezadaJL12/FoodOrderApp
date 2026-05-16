@@ -5,9 +5,9 @@
     android:orientation="horizontal"
     android:padding="12dp"
     android:gravity="center_vertical"
-    android:background="?android:attr/activatedBackgroundIndicator"> <ImageView
+    android:background="?android:attr/activatedBackgroundIndicator">
+    <ImageView
     android:id="@+id/img_dividir"
-    android:background="@color/white"
     android:layout_width="60dp"
     android:layout_height="60dp"
     android:scaleType="centerCrop" />

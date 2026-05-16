@@ -67,15 +67,47 @@ class RegistroActivity : AppCompatActivity() {
         })
 
         btnEnviar.setOnClickListener {
-            val nombre = etNombre.text.toString()
-            val correo = etCorreo.text.toString()
-            val telefono = etTelefono.text.toString()
-            val contra = etPassword.text.toString()
-            val fecha = etFechaNacimiento.text.toString()
 
-            if (nombre.isEmpty() || correo.isEmpty() || contra.isEmpty()) {
-                Toast.makeText(this, "Por favor llena los campos obligatorios", Toast.LENGTH_SHORT)
-                    .show()
+            val nombre = etNombre.text.toString().trim()
+            val correo = etCorreo.text.toString().trim()
+            val telefono = etTelefono.text.toString().trim()
+            val contra = etPassword.text.toString().trim()
+            val fecha = etFechaNacimiento.text.toString().trim()
+
+            // Validaciones
+
+            if (nombre.isEmpty() || correo.isEmpty() || contra.isEmpty() || telefono.isEmpty() || fecha.isEmpty()) {
+                Toast.makeText(this, "Por favor llena todos los campos", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Nombre solo letras
+            if (!nombre.matches(Regex("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$"))) {
+                Toast.makeText(this, "El nombre solo debe contener letras", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Correo válido
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
+                Toast.makeText(this, "Correo inválido", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Contraseña mínima
+            if (contra.length < 6) {
+                Toast.makeText(this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Teléfono solo números y 10 dígitos
+            if (!telefono.matches(Regex("^[0-9]{10}$"))) {
+                Toast.makeText(this, "El teléfono debe tener 10 dígitos", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Fecha básica (dd/MM/yyyy)
+            if (!fecha.matches(Regex("^\\d{2}/\\d{2}/\\d{4}$"))) {
+                Toast.makeText(this, "Formato de fecha inválido (dd/MM/yyyy)", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -83,7 +115,7 @@ class RegistroActivity : AppCompatActivity() {
             auth.createUserWithEmailAndPassword(correo, contra)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        //Si se creó bien, guardamos los datos extra en Realtime Database
+
                         val userId = auth.currentUser?.uid
                         val nuevoUsuario = Usuario(0, nombre, fecha, correo, telefono, contra)
 
@@ -91,8 +123,7 @@ class RegistroActivity : AppCompatActivity() {
                             database.reference.child("usuarios").child(userId)
                                 .setValue(nuevoUsuario)
                                 .addOnSuccessListener {
-                                    Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT)
-                                        .show()
+                                    Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
                                     finish()
                                 }
                                 .addOnFailureListener {
@@ -103,6 +134,7 @@ class RegistroActivity : AppCompatActivity() {
                                     ).show()
                                 }
                         }
+
                     } else {
                         Toast.makeText(
                             this,
@@ -111,7 +143,6 @@ class RegistroActivity : AppCompatActivity() {
                         ).show()
                     }
                 }
-
         }
     }
 }

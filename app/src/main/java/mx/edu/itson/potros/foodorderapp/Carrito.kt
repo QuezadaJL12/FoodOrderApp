@@ -13,19 +13,25 @@ class Carrito : AppCompatActivity() {
 
     private lateinit var adaptador: AdaptadorCarrito
     private lateinit var tvTotal: TextView
+    private lateinit var tvSubtotal: TextView
+    private lateinit var tvIVA: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_carrito)
 
         val listView: ListView = findViewById(R.id.listViewCarrito)
+
         tvTotal = findViewById(R.id.tvTotal)
+        tvSubtotal = findViewById(R.id.tvSubtotal)
+        tvIVA = findViewById(R.id.tvIVA)
+
         val btnPagar: Button = findViewById(R.id.btnPagar)
 
-
         adaptador = AdaptadorCarrito(this, CartManager.selectedProducts) {
-            actualizarTotal() // Esta es la función que se ejecuta al eliminar un item
+            actualizarTotal()
         }
+
         listView.adapter = adaptador
 
         actualizarTotal()
@@ -40,9 +46,16 @@ class Carrito : AppCompatActivity() {
         }
     }
 
-    // Función para no repetir código al calcular el total
+    // Función para calcular subtotal, IVA y total
     private fun actualizarTotal() {
-        tvTotal.text = "$${String.format("%.2f", CartManager.getTotal())}"
+
+        val total = CartManager.getTotal()
+        val subtotal = total / 1.16
+        val iva = total - subtotal
+
+        tvSubtotal.text = "$${String.format("%.2f", subtotal)}"
+        tvIVA.text = "$${String.format("%.2f", iva)}"
+        tvTotal.text = "$${String.format("%.2f", total)}"
     }
 
     // Clase del adaptador optimizada
@@ -57,7 +70,10 @@ class Carrito : AppCompatActivity() {
         override fun getItemId(position: Int): Long = position.toLong()
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-            val vista = LayoutInflater.from(contexto).inflate(R.layout.item_carrito, parent, false)
+
+            val vista = LayoutInflater.from(contexto)
+                .inflate(R.layout.item_carrito, parent, false)
+
             val prod = productos[position]
 
             val nombre = vista.findViewById<TextView>(R.id.nombre_carrito)

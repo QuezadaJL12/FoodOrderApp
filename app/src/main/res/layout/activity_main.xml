@@ -7,16 +7,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="30dp"
-    android:background="@color/white"
+    android:padding="32dp"
+    android:background="#E0E0E0"
     tools:context=".MainActivity">
+
 
     <ImageView
         android:id="@+id/imgLogo"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
         android:src="@drawable/foodorderapp"
+        android:scaleType="centerInside"
         android:contentDescription="Logo de la App"/>
+
 
     <TextView
         android:id="@+id/tvSlogan"
@@ -24,32 +27,41 @@
         android:layout_height="wrap_content"
         android:text="@string/slogan"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-medium"
         android:textStyle="italic"
-        android:textColor="@color/gris_texto"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="40dp"/>
+        android:textColor="#424242"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="48dp"/>
+
 
     <Button
         android:id="@+id/btnIniciarSesion"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="56dp"
         android:text="@string/btn_login"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:backgroundTint="@color/naranja_primario"
-        android:textSize="16sp"
-        android:layout_marginBottom="15dp"
-        app:cornerRadius="10dp"/>
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"
+        app:cornerRadius="12dp"
+        app:elevation="6dp"/>
 
-    <Button
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnRegistrar"
-        style="?attr/materialButtonOutlinedStyle"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="56dp"
         android:text="@string/btn_register"
+        android:textAllCaps="false"
         android:textColor="@color/naranja_primario"
         app:strokeColor="@color/naranja_primario"
-        android:textSize="16sp"
-        app:cornerRadius="10dp"/>
+        app:strokeWidth="2dp"
+        android:textSize="17sp"
+        app:cornerRadius="12dp"
+        android:backgroundTint="@android:color/transparent"/>
 
 </LinearLayout>

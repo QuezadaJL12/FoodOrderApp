@@ -5,88 +5,119 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="#E0E0E0"
+    android:padding="24dp"
     tools:context=".menuCategorias">
 
+    <!-- Logo ajustado sin márgenes negativos extraños -->
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="-150dp"
-        android:src="@drawable/foodorderapp" />
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/foodorderapp"
+        android:contentDescription="Logo"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:fontFamily="sans-serif-light"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-black"
         android:text="@string/nuestro_menu"
-        android:textAllCaps="true"
-        android:textSize="20sp" />
+        android:letterSpacing="0.1"
+        android:textColor="#212121"
+        android:textSize="24sp" />
 
-    <GridLayout
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecciona una categoría"
+        android:textColor="#757575"
+        android:textSize="14sp"
+        android:layout_marginBottom="30dp"/>
+
+    <!-- Contenedor de botones tipo menú -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:columnCount="1"
-        android:paddingHorizontal="50dp">
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp">
 
         <Button
             android:id="@+id/button_platillos"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill_horizontal"
-            android:layout_marginRight="2dp"
-            android:backgroundTint="@color/naranja_primario"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="20dp"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginBottom="12dp"
+            android:backgroundTint="@color/white"
             android:text="@string/platillos"
-            android:textAllCaps="true"
+            android:textAllCaps="false"
+            android:textColor="#212121"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@color/white"
-            android:textSize="13dp" />
+            app:cornerRadius="16dp"
+            app:icon="@android:drawable/ic_menu_gallery"
+            app:iconTint="@color/naranja_primario"
+            app:iconPadding="12dp"
+            app:rippleColor="#F5F5F5"/>
 
         <Button
             android:id="@+id/button_postres"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill_horizontal"
-            android:layout_marginRight="2dp"
-            android:backgroundTint="@color/naranja_primario"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="20dp"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginBottom="12dp"
+            android:backgroundTint="@color/white"
             android:text="@string/postres"
-            android:textAllCaps="true"
+            android:textAllCaps="false"
+            android:textColor="#212121"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@color/white"
-            android:textSize="13dp" />
+            app:cornerRadius="16dp"
+            app:icon="@android:drawable/ic_menu_view"
+            app:iconTint="@color/naranja_primario"
+            app:iconPadding="12dp"/>
 
         <Button
             android:id="@+id/button_bebidas"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill_horizontal"
-            android:layout_marginRight="2dp"
-            android:backgroundTint="@color/naranja_primario"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="20dp"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginBottom="12dp"
+            android:backgroundTint="@color/white"
             android:text="@string/bebidas"
-            android:textAllCaps="true"
+            android:textAllCaps="false"
+            android:textColor="#212121"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@color/white"
-            android:textSize="13dp" />
-    </GridLayout>
+            app:cornerRadius="16dp"
+            app:icon="@android:drawable/ic_menu_more"
+            app:iconTint="@color/naranja_primario"
+            app:iconPadding="12dp"/>
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
     <Button
         android:id="@+id/btn_ver_carrito"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginHorizontal="50dp"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="10dp"
         android:backgroundTint="@color/naranja_primario"
-        android:paddingVertical="15dp"
         android:text="@string/ver_carrito"
+        android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="14sp"
-        android:textStyle="bold" />
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:cornerRadius="12dp"
+        app:icon="@android:drawable/ic_menu_search"
+        app:iconGravity="textStart"
+        app:elevation="4dp"/>
 
 </LinearLayout>

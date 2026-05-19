@@ -6,52 +6,103 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="30dp"
-    android:gravity="center"
-    android:background="@color/white"
+    android:padding="32dp"
+    android:gravity="center_horizontal"
+    android:background="@color/gris"
     tools:context=".LoginActivity">
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:src="@drawable/foodorderapp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="16dp"
         android:contentDescription="Logo de la App"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Bienvenido de nuevo"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textAlignment="center"
-        android:layout_marginBottom="30dp"/>
+        android:textSize="28sp"
+        android:fontFamily="sans-serif-black"
+        android:textColor="#212121"
+        android:layout_marginBottom="8dp"/>
 
-    <EditText
-        android:id="@+id/etLoginCorreo"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:hint="Correo Electrónico"
-        android:inputType="textEmailAddress"
-        android:layout_marginBottom="15dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingresa tus credenciales para continuar"
+        android:textSize="14sp"
+        android:textColor="#616161"
+        android:layout_marginBottom="40dp"/>
 
-    <EditText
-        android:id="@+id/etLoginPassword"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
-        android:layout_marginBottom="30dp"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:boxStrokeColor="@color/naranja_primario"
+        app:hintTextColor="@color/naranja_primario"
+        app:boxBackgroundColor="@color/white"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etLoginCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Correo Electrónico"
+            android:inputType="textEmailAddress"
+            android:textColor="#212121"
+            android:textColorHint="#757575" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        app:passwordToggleEnabled="true"
+        app:boxStrokeColor="@color/naranja_primario"
+        app:hintTextColor="@color/naranja_primario"
+        app:boxBackgroundColor="@color/white"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etLoginPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contraseña"
+            android:inputType="textPassword"
+            android:textColor="#212121"
+            android:textColorHint="#757575" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnLoginEntrar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="56dp"
         android:text="Entrar"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:backgroundTint="@color/naranja_primario"
-        android:textSize="18sp"
-        app:cornerRadius="10dp"/>
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:elevation="4dp"
+        app:cornerRadius="12dp"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.2" />
 
 </LinearLayout>
